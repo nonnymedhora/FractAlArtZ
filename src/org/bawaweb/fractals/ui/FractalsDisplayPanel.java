@@ -19,18 +19,18 @@ public class FractalsDisplayPanel extends JPanel {
 		super();
 	}
 
-	FractalCanvas fractalCanvas = null;
+	FractalPanel fractalPanel = null;
 	BufferedImage fractalImage = null;
 
 	public FractalsDisplayPanel(String choice) {
 		super();
 		if (choice.equals("Mandelbrot")) {
-			fractalCanvas = new MandelbrotCanvas();
+			fractalPanel = new MandelbrotPanel();
 		} else if (choice.equals("Julia")) {
-			fractalCanvas = new JuliaCanvas();
+			fractalPanel = new JuliaPanel();
 		}
-		fractalCanvas.setVisible(true);
-		this.add(fractalCanvas);
+		fractalPanel.setVisible(true);
+		this.add(fractalPanel);
 		
 
         Border displayPanelBorder = BorderFactory.createTitledBorder(
@@ -44,12 +44,12 @@ public class FractalsDisplayPanel extends JPanel {
 		super();
 		this.options = opt;
 		if (choice.equals("Mandelbrot")) {
-			fractalCanvas = new MandelbrotCanvas(opt);
+			fractalPanel = new MandelbrotPanel(opt);
 		} else if (choice.equals("Julia")) {
-			fractalCanvas = new JuliaCanvas(opt);
+			fractalPanel = new JuliaPanel(opt);
 		}
-		fractalImage = fractalCanvas.getImage();
-		fractalCanvas=null;
+		fractalImage = fractalPanel.getImage();
+		fractalPanel=null;
 		/*fractalCanvas.setVisible(true);
 		this.add(fractalCanvas);*/
 		
@@ -64,26 +64,26 @@ public class FractalsDisplayPanel extends JPanel {
 		this.setVisible(true);
 	}
 	
-	public FractalsDisplayPanel(FractalCanvas[] fractals) {
+	public FractalsDisplayPanel(FractalPanel[] fractals) {
 		
 	}
 	
 	public void setChoice(String choice) {
-		this.fractalCanvas = null;
+		this.fractalPanel = null;
 		if (choice.equals("Mandelbrot")) {
-			this.fractalCanvas = new MandelbrotCanvas();
+			this.fractalPanel = new MandelbrotPanel();
 		} else if (choice.equals("Julia")) {
-			this.fractalCanvas = new JuliaCanvas();
+			this.fractalPanel = new JuliaPanel();
 		}
 		repaint();
 	}
 
-	public FractalCanvas getFractalCanvas() {
-		return this.fractalCanvas;
+	public FractalPanel getFractalCanvas() {
+		return this.fractalPanel;
 	}
 
-	public void setFractalCanvas(FractalCanvas fCanvas) {
-		this.fractalCanvas = fCanvas;
+	public void setFractalCanvas(FractalPanel fCanvas) {
+		this.fractalPanel = fCanvas;
 	}
 
 }

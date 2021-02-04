@@ -70,11 +70,16 @@ public class ControlPanel extends JPanel {
 			private void doGo() {
 				FractalOptions fO = fractalOptionsPanel.getFractalOptions();
 
+				fdPanel = null;
+
 				if (fractalChoice.equals("Mandelbrot")) {
 					fdPanel = new FractalsDisplayPanel("Mandelbrot",fO);
 				} else if (fractalChoice.equals("Julia")) {
 					fdPanel = new FractalsDisplayPanel("Julia",fO);
 				}
+				
+				fdPanel.validate();
+				fractalOptionsPanel.validate();
 			}
 		});
 		

@@ -15,15 +15,15 @@ import org.bawaweb.fractals.utils.ComplexNumber;
  * @author Navroz
  *
  */
-public class JuliaCanvas extends FractalCanvas {
+public class JuliaPanel extends FractalPanel {
 
 	private static final long serialVersionUID = 98765L;
 
-	public JuliaCanvas() {
+	public JuliaPanel() {
 		super();
     }
 	
-	public JuliaCanvas(FractalOptions opt) {
+	public JuliaPanel(FractalOptions opt) {
 		super(opt);
 
 		double xCenter = opt.getxCenter();

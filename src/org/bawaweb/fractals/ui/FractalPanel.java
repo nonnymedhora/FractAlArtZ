@@ -3,9 +3,8 @@
  */
 package org.bawaweb.fractals.ui;
 
-import java.awt.Canvas;
+
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,6 +15,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.MemoryImageSource;
+
+import javax.swing.JPanel;
 
 import org.bawaweb.fractals.FractalOptions;
 import org.bawaweb.fractals.utils.ComplexNumber;
@@ -29,7 +30,7 @@ import org.bawaweb.fractals.utils.ComplexNumber;
  *	JPanels are double buffered by default and that usually 
  *	smooths out any animation if that's your goal.
  */
-public abstract class FractalCanvas extends Canvas implements MouseListener, MouseMotionListener {
+public abstract class FractalPanel extends JPanel implements MouseListener, MouseMotionListener {
 
 	private static final long serialVersionUID = 19876543L;
 	private Color bgcolor;
@@ -40,7 +41,7 @@ public abstract class FractalCanvas extends Canvas implements MouseListener, Mou
 	protected int[] data = null;
 	private BufferedImage fractalImage = null;
 
-	public FractalCanvas() {		
+	public FractalPanel() {		
 		setSize(width,height);
 		setColor(Color.green);
 	    setPreferredSize(new Dimension(width, height));
@@ -50,7 +51,7 @@ public abstract class FractalCanvas extends Canvas implements MouseListener, Mou
 	    setVisible(true);
 	}
 	
-	public FractalCanvas(FractalOptions opt) {
+	public FractalPanel(FractalOptions opt) {
 		this();
 	}
 
@@ -134,14 +135,14 @@ public abstract class FractalCanvas extends Canvas implements MouseListener, Mou
 
 
 
-/**
- * Returns the pixel Z value
- * @param zConstant	-	the constant used against the pixel
- * @param z			-	the pixel - z value, usually x + <b><i>i</i></b>y
- * @param options	-	the fractaloptions
- * @return
- */
-	protected /*static */ComplexNumber getZValue(ComplexNumber zConstant, ComplexNumber z, FractalOptions options) {
+	/**
+	 * Returns the pixel Z value
+	 * @param zConstant	-	the constant used against the pixel
+	 * @param z			-	the pixel - z value, usually x + <b><i>i</i></b>y
+	 * @param options	-	the fractaloptions
+	 * @return
+	 */
+	protected ComplexNumber getZValue(ComplexNumber zConstant, ComplexNumber z, FractalOptions options) {
 		double exp = options.getExponent();
 		String zCOp = options.getZcOperation();
 		

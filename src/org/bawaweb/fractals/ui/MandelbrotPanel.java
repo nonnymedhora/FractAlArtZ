@@ -11,15 +11,15 @@ import java.awt.image.MemoryImageSource;
 import org.bawaweb.fractals.FractalOptions;
 import org.bawaweb.fractals.utils.ComplexNumber;
 
-public class MandelbrotCanvas extends FractalCanvas {
+public class MandelbrotPanel extends FractalPanel {
 	
 	private static final long serialVersionUID = 134567L;
 
-	public MandelbrotCanvas() {
+	public MandelbrotPanel() {
 		super();
     }
 	
-	public MandelbrotCanvas(FractalOptions opt) {
+	public MandelbrotPanel(FractalOptions opt) {
 		super(opt);
 
 		double xCenter = opt.getxCenter();//-0.5;
@@ -36,6 +36,10 @@ public class MandelbrotCanvas extends FractalCanvas {
 			for (int j = 0; j < n; j++) {
 				double x0 = xCenter - scaleSize / 2 + scaleSize * i / n;
 				double y0 = yCenter - scaleSize / 2 + scaleSize * j / n;
+				
+				//TODO	x0,y0 [i=0,j=0]	is	origin at top-left
+				//	reorient needed here
+				
 				ComplexNumber z0 = new ComplexNumber(x0, y0);
 				int gray = maxIter - mand(z0, opt);
 				gray = checkColor(gray);
