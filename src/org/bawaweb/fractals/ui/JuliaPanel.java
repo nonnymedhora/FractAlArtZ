@@ -34,6 +34,7 @@ public class JuliaPanel extends FractalPanel {
 		int maxIter = opt.getMaxIter(); // maximum number of iterations
 		
 		this.data = new int[n * n];
+		this.iterArr = new int[n * n];
 
 		int pixPt = 0;
 		for (int i = 0; i < n; i++) {
@@ -41,16 +42,23 @@ public class JuliaPanel extends FractalPanel {
 				double x0 = xCenter - scaleSize / 2 + scaleSize * i / n;
 				double y0 = yCenter - scaleSize / 2 + scaleSize * j / n;
 				ComplexNumber z0 = new ComplexNumber(x0, y0);
-				int gray = maxIter - julia(z0, opt);
+				final int julia = julia(z0, opt);
+				int gray = maxIter - julia;
 				gray = checkColor(gray);
 				Color color = new Color(gray, gray, gray);
 
 				this.data[pixPt] = color.getRGB();
+				this.zIterMap.put(z0, julia);
+				this.add2IterFrequencyMap(julia);
+				int julItrClr = checkColor(julia);
+				this.iterArr[pixPt] = new Color(julItrClr).getRGB();//,julItrClr,julItrClr).getRGB();
 				pixPt += 1;
 			}
 		}
 		
 		this.setUpFractalImage();
+		this.setUpIterImage();
+		this.setUpIterFrequencyImage();
 	}
 	
 	private int julia(ComplexNumber z0, FractalOptions opt) {

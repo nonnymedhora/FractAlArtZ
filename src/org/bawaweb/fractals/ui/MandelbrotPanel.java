@@ -30,6 +30,7 @@ public class MandelbrotPanel extends FractalPanel {
 		int maxIter = opt.getMaxIter(); // maximum number of iterations
 		
 		this.data = new int[n * n];
+		this.iterArr = new int[n * n];
 
 		int pixPt = 0;
 		for (int i = 0; i < n; i++) {
@@ -41,16 +42,23 @@ public class MandelbrotPanel extends FractalPanel {
 				//	reorient needed here
 				
 				ComplexNumber z0 = new ComplexNumber(x0, y0);
-				int gray = maxIter - mand(z0, opt);
+				final int mandy = mand(z0, opt);
+				int gray = maxIter - mandy;
 				gray = checkColor(gray);
 				Color color = new Color(gray, gray, gray);
 
 				this.data[pixPt] = color.getRGB();
+				this.zIterMap.put(z0, mandy);
+				this.add2IterFrequencyMap(mandy);
+				int mandyItrClr = checkColor(mandy);
+				this.iterArr[pixPt] = new Color(mandyItrClr).getRGB();//,mandyItrClr,mandyItrClr).getRGB();
 				pixPt += 1;
 			}
 		}
 		
 		this.setUpFractalImage();
+		this.setUpIterImage();
+		this.setUpIterFrequencyImage();
 	}
 	
 

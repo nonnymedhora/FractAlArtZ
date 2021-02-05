@@ -21,6 +21,8 @@ public class FractalsDisplayPanel extends JPanel {
 
 	FractalPanel fractalPanel = null;
 	BufferedImage fractalImage = null;
+	BufferedImage zIterImage = null;
+	BufferedImage iterFrequencyImage = null;
 
 	public FractalsDisplayPanel(String choice) {
 		super();
@@ -49,13 +51,26 @@ public class FractalsDisplayPanel extends JPanel {
 			fractalPanel = new JuliaPanel(opt);
 		}
 		fractalImage = fractalPanel.getImage();
-		fractalPanel=null;
+		zIterImage = fractalPanel.getIterImage(); 
+		iterFrequencyImage = fractalPanel.getIterFrequencyImage();
+
+		fractalPanel = null;
 		/*fractalCanvas.setVisible(true);
 		this.add(fractalCanvas);*/
 		
 		final JLabel imgLbl = new JLabel(new ImageIcon(fractalImage));
 		imgLbl.setVisible(true);
-		this.add(imgLbl);		
+		this.add(imgLbl);
+		
+		final JLabel imgItrLbl = new JLabel(new ImageIcon(zIterImage));
+		imgItrLbl.setVisible(true);
+//		this.add(imgItrLbl);
+		
+
+		
+		final JLabel imgItrFrqLbl = new JLabel(new ImageIcon(iterFrequencyImage));
+		imgItrFrqLbl.setVisible(true);
+//		this.add(imgItrFrqLbl);
 
         Border displayPanelBorder = BorderFactory.createTitledBorder(
                 BorderFactory.createLineBorder(Color.LIGHT_GRAY), "Fractal");
